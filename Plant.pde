@@ -35,7 +35,7 @@ class Plant extends LivingThing{
   void render(){
     
     
-    fill(0,255,255);
+    fill(0,255,0);
     noStroke();
     ellipse(pos.x, pos.y, size,size);
   }
