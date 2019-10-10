@@ -28,19 +28,19 @@ void spop(){
   for(int i = 0; i < ppop; i++){
      cppop++;
      Plant p= new Plant();
-  engine.add(p);
+     engine.add(p);
   }
   
   for(int i = 0; i < hpop; i++){
     chpop++;
     Walkerh h = new Walkerh();
-  engine.add(h);
+    engine.add(h);
   }
   
  for(int i = 0; i < cpop; i++){
    ccpop++;
    Walkerc c = new Walkerc();
-  engine.add(c);
+    engine.add(c);
   }
 }
 
@@ -48,12 +48,12 @@ void spop(){
     background(0);
     
     if(chpop <= 0){
-      println("ecodead");
-    ecodead = true;
-   spop(); 
+      //println("ecodead");
+      ecodead = true;
+      spop(); 
   }
     
-     int i = engine.size()-1;
+  int i = engine.size()-1;
   while (i>=0) {
     LivingThing thing = engine.get(i);
     thing.act();
@@ -69,21 +69,21 @@ void spop(){
      
      if(cppop <= 1000){
        
-     if(p.babytime()){
-       cppop++;
-     p.size = p.ssize;
-    Plant pl = new Plant();
-    engine.add(pl);
+       if(p.babytime()){
+         cppop++;
+         p.size = p.ssize;
+         Plant pl = new Plant();
+         engine.add(pl);
+       } 
      }
-   }
-    }
+  }
    
     LivingThing h = engine.get(i);
     
     if(h.dead()){
-    chpop--;  
+       chpop--;  
     }else{
-     ecodead = false; 
+       ecodead = false; 
     }
     
    if( h instanceof Walkerh){
@@ -93,7 +93,7 @@ void spop(){
      
        h.size = h.ssize;
         Walkerh he = new Walkerh();
-     engine.add(he); 
+       engine.add(he); 
     }
    }
    
@@ -101,17 +101,17 @@ void spop(){
      if( c instanceof Walkerc){
        
        if(c.dead()){
-        ccpop--; 
+         ccpop--; 
        }
        
-   if(c.babytime()){
-     ccpop++;
-       c.size = c.ssize;
-        Walkerc ca = new Walkerc();
-     engine.add(ca); 
+     if(c.babytime()){
+         ccpop++;
+         c.size = c.ssize;
+         Walkerc ca = new Walkerc();
+         engine.add(ca); 
     
     }
-     }
+    }
     
     if(thing.dead()){
        engine.remove(i); 
