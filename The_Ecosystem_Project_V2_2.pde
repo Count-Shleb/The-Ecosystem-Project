@@ -52,7 +52,12 @@ void spop(){
     if(chpop <= 0){
       //println("ecodead");
       ecodead = true;
-      spop(); 
+      //spop(); 
+  }
+  
+  if(ecodead){
+   spop();
+   ecodead = false;
   }
     
   int i = engine.size()-1;
@@ -83,8 +88,6 @@ void spop(){
     
     if(h.dead()){
        chpop--;  
-    }else{
-       ecodead = false; 
     }
     
    if( h instanceof Walkerh){
