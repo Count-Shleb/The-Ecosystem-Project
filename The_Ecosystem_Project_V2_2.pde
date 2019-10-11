@@ -1,8 +1,8 @@
 ArrayList<LivingThing> engine;
 
-int ppop = 2000;
-int hpop = 100;
-int cpop = 5;
+int ppop = 1000;
+int hpop = 15;
+int cpop = 2;
 
 int cppop = 0;
 int chpop = 0;
