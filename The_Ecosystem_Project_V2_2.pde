@@ -8,6 +8,8 @@ int cppop = 0;
 int chpop = 0;
 int ccpop = 0;
 
+int maxpop = 2000;
+
 boolean ecodead = false;
 
 Plant p;
@@ -67,7 +69,7 @@ void spop(){
        cppop--;
      }
      
-     if(cppop <= 1000){
+     if(cppop <= maxpop){
        
        if(p.babytime()){
          cppop++;
