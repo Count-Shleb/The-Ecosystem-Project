@@ -1,8 +1,8 @@
 ArrayList<LivingThing> engine;
 
-int ppop = 1000;
-int hpop = 15;
-int cpop = 2;
+int ppop = 2000;
+int hpop = 100;
+int cpop = 5;
 
 int cppop = 0;
 int chpop = 0;
@@ -69,11 +69,10 @@ void spop(){
        cppop--;
      }
      
+     if(p.babytime()){
+       p.size = p.ssize;
      if(cppop <= maxpop){
-       
-       if(p.babytime()){
          cppop++;
-         p.size = p.ssize;
          Plant pl = new Plant();
          engine.add(pl);
        } 
