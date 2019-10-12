@@ -2,7 +2,7 @@ class Walkerc extends LivingThing{
  
   Walkerc(){
     hp=1;
-    ssize =random(10,15);
+    ssize =random(5,10);
     size  = ssize;
     mass = size/2;
     babysize = ssize*2;
@@ -38,19 +38,30 @@ class Walkerc extends LivingThing{
       hp--;
     }
     
-    int i = 0;
-    while (i < engine.size()) {
-    LivingThing h = engine.get(i);
-    
-    if(h instanceof Walkerh) {
-      if(dist(pos.x, pos.y, h.pos.x, h.pos.y)<size + h.size/2){
+    //stroke(255);
+  for (int i = 0; i < cols; i++) {
+    //line(i*scl,0,i*scl,height);
+    for (int j = 0; j < rows; j++) {
+      //line(0,j*scl,width,j*scl);
+      
+      ArrayList<LivingThing> temp = grid[i][j];
+      
+      for(LivingThing h : temp){
+        
+        if(h instanceof Walkerh){
+          
+          if(dist(pos.x, pos.y, h.pos.x, h.pos.y)<size/2 + h.size/2){
         h.hp--;
-        size += h.size/16;
+        size += h.size/128;
         // println("dead");
       }
+        }
+        
+      }
+      
     }
-      i++;
-    }
+    
+  }
     
   }
   
@@ -59,11 +70,22 @@ class Walkerc extends LivingThing{
     
     fill(255,0,0);
     noStroke();
-    ellipse(pos.x, pos.y, size,size);
+    
+    float theta = vel.heading();
+    
+    pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(theta-PI*1.5);
+    beginShape(TRIANGLES);
+    vertex(0, -size);
+    vertex(-size/2, size);
+    vertex(size/2, size);
+    endShape();
+    popMatrix();
   }
   
   boolean babytime(){
-     return size >= babysize || ecodead;
+     return size >= babysize;
    }
   
 }

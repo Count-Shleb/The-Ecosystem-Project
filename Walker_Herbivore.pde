@@ -38,17 +38,32 @@ class Walkerh extends LivingThing{
       hp--;
     }
     
-    int i = 0;
-    while (i < engine.size()) {
-    LivingThing p = engine.get(i);
-    if(p instanceof Plant) {
-      if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size + p.size/2){
-      p.hp--;
-       size += p.size/128;
+   //stroke(255);
+  for (int i = 0; i < cols; i++) {
+    //line(i*scl,0,i*scl,height);
+    for (int j = 0; j < rows; j++) {
+      //line(0,j*scl,width,j*scl);
+      
+      ArrayList<LivingThing> temp = grid[i][j];
+      
+      for(LivingThing p : temp){
+        
+        if(p instanceof Plant){
+         
+          if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size/2 + p.size/2){
+        p.hp--;
+        size += p.size/2048;
+        // println("dead");
+     
+          }
+        }
+        
       }
+      
     }
-      i++;
-    }
+    
+  }
+   
     }
   
   void render(){
@@ -56,11 +71,22 @@ class Walkerh extends LivingThing{
     
     fill(0,0,255);
     noStroke();
-    ellipse(pos.x, pos.y, size,size);
+    
+       float theta = vel.heading();
+    
+    pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(theta-PI*1.5);
+    beginShape(TRIANGLES);
+    vertex(0, -size);
+    vertex(-size/2, size);
+    vertex(size/2, size);
+    endShape();
+    popMatrix();
   }
   
    boolean babytime(){
-     return size >= babysize || ecodead;
+     return size >= babysize;
    }
    
 }
