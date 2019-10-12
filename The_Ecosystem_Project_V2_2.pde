@@ -1,7 +1,7 @@
 ArrayList<LivingThing> engine;
 ArrayList<LivingThing> [] [] grid;
 
-int ppop = 3000;
+int ppop = 2000;
 int hpop = 15;
 int cpop = 2;
 
