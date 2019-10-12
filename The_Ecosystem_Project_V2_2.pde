@@ -8,6 +8,8 @@ int cppop = 0;
 int chpop = 0;
 int ccpop = 0;
 
+int maxpop = 1000;
+
 boolean ecodead = false;
 
 Plant p;
@@ -20,7 +22,7 @@ void setup(){
   //size(800,800,P2D);
   fullScreen(P2D);
   frameRate(60);
-  engine = new ArrayList<LivingThing>(10000);
+  engine = new ArrayList<LivingThing>(5000);
   spop();
 }
 
@@ -67,9 +69,10 @@ void spop(){
        cppop--;
      }
      
-     if(cppop <= 1000){
+     if(p.babytime()){
        
-       if(p.babytime()){
+     if(cppop <= maxpop){
+             
          cppop++;
          p.size = p.ssize;
          Plant pl = new Plant();

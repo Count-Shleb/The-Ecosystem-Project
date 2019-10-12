@@ -40,19 +40,16 @@ class Walkerh extends LivingThing{
     
     int i = 0;
     while (i < engine.size()) {
-    LivingThing c = engine.get(i);
-    
-    if( c instanceof Walkerc) {
-      if(dist(pos.x, pos.y, c.pos.x, c.pos.y)<c.size-.5){
-      hp--;
-      c.size+=size/16;
-      // println("dead");
+    LivingThing p = engine.get(i);
+    if(p instanceof Plant) {
+      if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size + p.size/2){
+      p.hp--;
+       size += p.size/128;
       }
     }
       i++;
     }
-    
-  }
+    }
   
   void render(){
     

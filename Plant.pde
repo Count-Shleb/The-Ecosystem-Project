@@ -18,18 +18,6 @@ class Plant extends LivingThing{
     size += growth;
     
     mass = size/2;
-    
-    int i = 0;
-    while (i < engine.size()) {
-    LivingThing h = engine.get(i);
-    if(h instanceof Walkerh) {
-      if(dist(pos.x, pos.y, h.pos.x, h.pos.y)<size){
-      hp--;
-       h.size+=size/128;
-      }
-    }
-      i++;
-    }
   }
   
   void render(){

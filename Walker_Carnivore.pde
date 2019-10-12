@@ -38,6 +38,20 @@ class Walkerc extends LivingThing{
       hp--;
     }
     
+    int i = 0;
+    while (i < engine.size()) {
+    LivingThing h = engine.get(i);
+    
+    if(h instanceof Walkerh) {
+      if(dist(pos.x, pos.y, h.pos.x, h.pos.y)<size + h.size/2){
+        h.hp--;
+        size += h.size/16;
+        // println("dead");
+      }
+    }
+      i++;
+    }
+    
   }
   
   void render(){
