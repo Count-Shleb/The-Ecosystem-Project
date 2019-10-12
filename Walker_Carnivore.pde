@@ -74,7 +74,7 @@ class Walkerc extends LivingThing{
   }
   
   boolean babytime(){
-     return size >= babysize || ecodead;
+     return size >= babysize;
    }
   
 }

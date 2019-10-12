@@ -13,6 +13,7 @@ class Plant extends LivingThing{
   }
   
   void act(){
+    
     age++;
     
     size += growth;
@@ -29,7 +30,7 @@ class Plant extends LivingThing{
   }
   
   boolean babytime(){
-     return size >= babysize || ecodead;
+     return size >= babysize;
    }
   
 }

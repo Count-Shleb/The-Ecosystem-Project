@@ -9,9 +9,9 @@ int cppop = 0;
 int chpop = 0;
 int ccpop = 0;
 
-int maxpop = 3000;
+int maxpop = 2000;
 
-int scl = 25;
+int scl = 100;
 
 int cols;
 int rows;
@@ -25,8 +25,8 @@ Walkerc c;
 
 void setup(){
   
-  size(1200,1200,P2D);
-  //fullScreen(P2D);
+  //size(1200,1200,P2D);
+  fullScreen(P2D);
   frameRate(60);
   engine = new ArrayList<LivingThing>(5000);
   
@@ -86,9 +86,13 @@ void spop(){
   }
     
     if(chpop <= 0){
-      //println("ecodead");
-      ecodead = true;
-      spop(); 
+      println("ecodead");
+      ecodead = true; 
+  }
+  
+  if(ecodead){
+   ecodead = false;
+   spop(); 
   }
     
   int i = engine.size()-1;
@@ -104,11 +108,10 @@ void spop(){
      }
      
      if(p.babytime()){
-       
+       p.size = p.ssize;
      if(cppop <= maxpop){
              
          cppop++;
-         p.size = p.ssize;
          Plant pl = new Plant();
          engine.add(pl);
        } 
@@ -117,17 +120,17 @@ void spop(){
    
     LivingThing h = engine.get(i);
     
-    if(h.dead()){
-       chpop--;  
-    }else{
-       ecodead = false; 
-    }
+    
     
    if( h instanceof Walkerh){
-     chpop++;
+     
+     if(h.dead()){
+       chpop--;        
+    }
+     
       //println(h.age);
    if(h.babytime()){
-     
+       chpop++;
        h.size = h.ssize;
         Walkerh he = new Walkerh();
        engine.add(he); 
@@ -156,6 +159,6 @@ void spop(){
    i--; 
   }
   
-  
+   text("HPOP: " + chpop,10,height-6);
   
   }

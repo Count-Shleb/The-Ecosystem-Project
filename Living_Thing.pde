@@ -26,7 +26,7 @@ abstract class LivingThing{
  }
  
   boolean dead(){
-  return hp <= 0;
+  return hp <= 0 || ecodead;
   }
   
 }
