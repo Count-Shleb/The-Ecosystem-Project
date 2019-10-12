@@ -38,17 +38,32 @@ class Walkerh extends LivingThing{
       hp--;
     }
     
-    int i = 0;
-    while (i < engine.size()) {
-    LivingThing p = engine.get(i);
-    if(p instanceof Plant) {
-      if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size + p.size/2){
-      p.hp--;
-       size += p.size/128;
+   //stroke(255);
+  for (int i = 0; i < cols; i++) {
+    //line(i*scl,0,i*scl,height);
+    for (int j = 0; j < rows; j++) {
+      //line(0,j*scl,width,j*scl);
+      
+      ArrayList<LivingThing> temp = grid[i][j];
+      
+      for(LivingThing p : temp){
+        
+        if(p instanceof Plant){
+         
+          if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size/2 + p.size/2){
+        p.hp--;
+        size += p.size/1024;
+        // println("dead");
+     
+          }
+        }
+        
       }
+      
     }
-      i++;
-    }
+    
+  }
+   
     }
   
   void render(){

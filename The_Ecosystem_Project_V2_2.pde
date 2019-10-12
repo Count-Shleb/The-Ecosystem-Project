@@ -1,6 +1,7 @@
 ArrayList<LivingThing> engine;
+ArrayList<LivingThing> [] [] grid;
 
-int ppop = 1000;
+int ppop = 3000;
 int hpop = 15;
 int cpop = 2;
 
@@ -8,7 +9,12 @@ int cppop = 0;
 int chpop = 0;
 int ccpop = 0;
 
-int maxpop = 1000;
+int maxpop = 3000;
+
+int scl = 25;
+
+int cols;
+int rows;
 
 boolean ecodead = false;
 
@@ -19,10 +25,22 @@ Walkerc c;
 
 void setup(){
   
-  //size(800,800,P2D);
-  fullScreen(P2D);
+  size(1200,1200,P2D);
+  //fullScreen(P2D);
   frameRate(60);
   engine = new ArrayList<LivingThing>(5000);
+  
+  cols = width/scl;     // Calculate cols & rows
+  rows = height/scl;    
+  
+  // Initialize grid as 2D array of empty ArrayLists
+  grid = new ArrayList[cols][rows];
+  for (int i = 0; i < cols; i++) {
+    for (int j = 0; j < rows; j++) {
+      grid[i][j] = new ArrayList<LivingThing>();
+    }
+  }
+  
   spop();
 }
 
@@ -49,6 +67,24 @@ void spop(){
   void draw(){
     background(0);
     
+    for (int i = 0; i < cols; i++) {
+    for (int j = 0; j < rows; j++) {
+      grid[i][j].clear();
+    }
+  }
+  
+  for(LivingThing t : engine){
+     int x = int(t.pos.x) / scl; 
+     int y = int (t.pos.y) /scl;
+     
+     for (int n = -1; n <= 1; n++) {
+      for (int m = -1; m <= 1; m++) {
+        if (x+n >= 0 && x+n < cols && y+m >= 0 && y+m< rows) grid[x+n][y+m].add(t);
+      }
+    }
+    
+  }
+    
     if(chpop <= 0){
       //println("ecodead");
       ecodead = true;
@@ -61,10 +97,8 @@ void spop(){
     thing.act();
     thing.render();
     
-    
      LivingThing p = engine.get(i);
-   if(p instanceof Plant){
-     
+   if(p instanceof Plant){     
      if(p.dead()){
        cppop--;
      }
