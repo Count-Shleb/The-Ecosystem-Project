@@ -5,12 +5,14 @@ abstract class LivingThing{
   PVector vel; //naming variable of velocity
   PVector acc; // naming variable of acceleration
   PVector force; //naming variable of force
+  PVector target;
   
   LivingThing(){
-     pos = new PVector((random(width)), (random(height))); //starting location of walker
+    pos = new PVector((random(width)), (random(height))); //starting location of walker
     vel = new PVector(0,0); //how the walker moves
     acc = new PVector(0,0); 
     force = new PVector(0,0);
+    target = new PVector(0,0);
   }
   
   void act(){

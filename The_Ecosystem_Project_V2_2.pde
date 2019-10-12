@@ -85,7 +85,7 @@ void spop(){
     
   }
     
-    if(chpop <= 0){
+    if(ccpop <= 0 || chpop <= 0){
       println("ecodead");
       ecodead = true; 
   }
@@ -159,6 +159,6 @@ void spop(){
    i--; 
   }
   
-   text("HPOP: " + chpop,10,height-6);
+   //text("HPOP: " + chpop,10,height-6);
   
   }
