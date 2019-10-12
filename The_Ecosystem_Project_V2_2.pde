@@ -8,7 +8,11 @@ int cppop = 0;
 int chpop = 0;
 int ccpop = 0;
 
+<<<<<<< HEAD
 int maxpop = 1000;
+=======
+int maxpop = 2000;
+>>>>>>> d5b392890d76b16fdf2cde759f5ce02c29cbbe72
 
 boolean ecodead = false;
 
@@ -52,7 +56,12 @@ void spop(){
     if(chpop <= 0){
       //println("ecodead");
       ecodead = true;
-      spop(); 
+      //spop(); 
+  }
+  
+  if(ecodead){
+   spop();
+   ecodead = false;
   }
     
   int i = engine.size()-1;
@@ -70,11 +79,15 @@ void spop(){
      }
      
      if(p.babytime()){
+<<<<<<< HEAD
        
      if(cppop <= maxpop){
              
+=======
+       p.size = p.ssize;
+     if(cppop <= maxpop){
+>>>>>>> d5b392890d76b16fdf2cde759f5ce02c29cbbe72
          cppop++;
-         p.size = p.ssize;
          Plant pl = new Plant();
          engine.add(pl);
        } 
@@ -85,8 +98,6 @@ void spop(){
     
     if(h.dead()){
        chpop--;  
-    }else{
-       ecodead = false; 
     }
     
    if( h instanceof Walkerh){
