@@ -8,11 +8,7 @@ int cppop = 0;
 int chpop = 0;
 int ccpop = 0;
 
-<<<<<<< HEAD
-int maxpop = 1000;
-=======
 int maxpop = 2000;
->>>>>>> d5b392890d76b16fdf2cde759f5ce02c29cbbe72
 
 boolean ecodead = false;
 
@@ -79,20 +75,19 @@ void spop(){
      }
      
      if(p.babytime()){
-<<<<<<< HEAD
        
      if(cppop <= maxpop){
-             
-=======
        p.size = p.ssize;
      if(cppop <= maxpop){
->>>>>>> d5b392890d76b16fdf2cde759f5ce02c29cbbe72
+
          cppop++;
          Plant pl = new Plant();
          engine.add(pl);
        } 
      }
   }
+  
+   }
    
     LivingThing h = engine.get(i);
     
@@ -133,6 +128,6 @@ void spop(){
    i--; 
   }
   
-  
-  
   }
+  
+  
