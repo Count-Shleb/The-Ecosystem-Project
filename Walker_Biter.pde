@@ -37,7 +37,7 @@ class Walkerb extends LivingThing{
           
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
         s.hp--;
-        size += s.size/256;
+        size += s.size/250;
         // println("dead");
      
           }

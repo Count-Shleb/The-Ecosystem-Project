@@ -66,7 +66,7 @@ class Walkerd extends LivingThing{
           
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
         s.hp--;
-        tsize += s.size/512;
+        tsize += s.size/500;
       }
         }
         

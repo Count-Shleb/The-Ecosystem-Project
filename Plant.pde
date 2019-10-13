@@ -7,7 +7,7 @@ class Plant extends LivingThing{
     mass = size/2;
     babysize = ssize*2;
    // println(babysize);
-    growth = .025;
+    growth = .005;
     age = 0;
     lifespan = 3600;
   }

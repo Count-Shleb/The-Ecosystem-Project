@@ -134,6 +134,10 @@ void spop(){
     
   }
     
+    if(ccpop <= 0){
+     println("cpopd");
+    }
+    
     if(ccpop <= 0 || chpop <= 0){
       println("ecodead");
       ecodead = true; 
