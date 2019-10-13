@@ -1,8 +1,8 @@
 class Nutrients extends LivingThing{
  
   Nutrients(){
-    hp = random(1000,10000);
-    ssize = hp /64;
+    hp = random(1000,50000);
+    ssize = hp /128;
     size = ssize;
     mass = size/2;
     //babysize = ssize*2;

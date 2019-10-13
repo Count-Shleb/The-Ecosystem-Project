@@ -70,7 +70,7 @@ class Walkerc extends LivingThing{
   
     acc = force.div(mass/massmod * 2);
     vel.add(acc);
-    vel.limit(mass/massmod/4);
+    vel.limit(mass/massmod/3.25);
     pos.add(vel);
     
     if(pos.x > width+size){ //containing the walker in the window
