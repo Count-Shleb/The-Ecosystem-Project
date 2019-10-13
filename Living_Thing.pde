@@ -1,11 +1,13 @@
 abstract class LivingThing{
   
-  float ssize, size, mass, massmod, hp, growth, babysize, age, lifespan;
+  float ssize, tsize, size, mass, massmod, hp, growth, babysize, age, lifespan , record, precord;
   PVector pos; 
   PVector vel; //naming variable of velocity
   PVector acc; // naming variable of acceleration
   PVector force; //naming variable of force
   PVector target;
+  
+  boolean locked = false;
   
   LivingThing(){
     pos = new PVector((random(width)), (random(height))); //starting location of walker

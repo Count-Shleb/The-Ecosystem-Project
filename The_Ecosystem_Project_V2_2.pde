@@ -1,12 +1,13 @@
 ArrayList<LivingThing> engine;
 ArrayList<LivingThing> [] [] grid;
 ArrayList<LivingThing> nutrients;
+ArrayList <LivingThing> herbivores;
 
 int npop = 5;
 int ppop = 2000;
 int hpop = 15;
 int cpop = 2;
-int spop = 500;
+int spop = 1000;
 int bpop = 5;
 int dpop = 2;
 
@@ -47,6 +48,7 @@ void setup(){
   frameRate(60);
   engine = new ArrayList<LivingThing>(5000);
   nutrients = new ArrayList<LivingThing>(50);
+  herbivores = new ArrayList<LivingThing>(500);
   
   debug = new Debug();
   
@@ -82,6 +84,7 @@ void spop(){
     chpop++;
     Walkerh h = new Walkerh();
     engine.add(h);
+    herbivores.add(h);
   }
   
  for(int i = 0; i < cpop; i++){
@@ -135,15 +138,10 @@ void spop(){
       println("ecodead");
       ecodead = true; 
   }
-  
-  if(ecodead){
-   ecodead = false;
-   spop(); 
-  }
     
     nchance = -1;
    
-    if(ncounter >= 600){
+    if(ncounter >= 300){
     nchance = int(random(0, 3));
     ncounter = 0;
     
@@ -195,7 +193,8 @@ void spop(){
    if( h instanceof Walkerh){
      
      if(h.dead()){
-       chpop--;        
+       chpop--;   
+       herbivores.remove(h);
     }
      
       //println(h.age);
@@ -203,7 +202,7 @@ void spop(){
        chpop++;
        h.size = h.ssize;
         Walkerh he = new Walkerh();
-       engine.add(he); 
+       engine.add(he);
     }
    }
    
@@ -264,7 +263,7 @@ void spop(){
      }
      
      if(d.babytime()){
-       d.size = d.ssize;
+       d.tsize = d.ssize;
      if(cdpop <= maxpop){
              
          cdpop++;
@@ -281,6 +280,10 @@ void spop(){
    i--; 
   }
   
+  if(ecodead){
+   ecodead = false;
+   spop(); 
+  }
   
   if(keyPressed&&key==' '){
     debug.act();

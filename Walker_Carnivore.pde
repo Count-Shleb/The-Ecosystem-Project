@@ -15,25 +15,33 @@ class Walkerc extends LivingThing{
   void act(){
     age++;
     
-    force = PVector.random2D();
+     record = 100;
+     
+     locked = false;
     
-     //stroke(255);
-  for (int i = 0; i < cols; i++) {
-    //line(i*scl,0,i*scl,height);
-    for (int j = 0; j < rows; j++) {
-      //line(0,j*scl,width,j*scl);
+     for(int i = 0; i < herbivores.size(); i++){
       
-      ArrayList<LivingThing> temp = grid[i][j];
-      
-      for(LivingThing h : temp){
+       LivingThing h = herbivores.get(i);
         
         if(h instanceof Walkerh){
           
-           if(dist(pos.x, pos.y, h.pos.x, h.pos.y) <= 50){
+          precord = record;
+     if(dist(pos.x, pos.y, h.pos.x, h.pos.y) < precord){
+     record = dist(pos.x, pos.y, h.pos.x, h.pos.y);
+     }
+        
+          if(record < precord){
+             if(dist(pos.x, pos.y, h.pos.x, h.pos.y) <= 100){
+               locked = true;
              target = new PVector(h.pos.x + random(-h.size, h.size), h.pos.y + random(-h.size, h.size));
              force = target;
              force.sub(pos);
-             //force.add(PVector.random2D());
+             force.add(PVector.random2D());
+           }
+          }
+           
+           if(!locked){
+           force = PVector.random2D();
            }
            
           if(dist(pos.x, pos.y, h.pos.x, h.pos.y)<size/2 + h.size/2){
@@ -42,7 +50,7 @@ class Walkerc extends LivingThing{
         // println("dead");
       }
         }
-      }
+        }
         
       //  for(LivingThing b : temp){
         
@@ -56,13 +64,13 @@ class Walkerc extends LivingThing{
         
       //}
       
+        
     
-    }
-  }
   
-    acc = force.div(mass/massmod);
+  
+    acc = force.div(mass/massmod * 2);
     vel.add(acc);
-    vel.limit(mass/(massmod * 2));
+    vel.limit(mass/massmod/4);
     pos.add(vel);
     
     if(pos.x > width+size){ //containing the walker in the window
