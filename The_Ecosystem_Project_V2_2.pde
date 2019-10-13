@@ -43,8 +43,8 @@ Debug debug;
 
 void setup(){
   
-  size(800,800,P2D);
-  //fullScreen(P2D);
+  //size(800,800,P2D);
+  fullScreen(P2D);
   frameRate(60);
   engine = new ArrayList<LivingThing>(5000);
   nutrients = new ArrayList<LivingThing>(50);
@@ -203,6 +203,7 @@ void spop(){
        h.size = h.ssize;
         Walkerh he = new Walkerh();
        engine.add(he);
+       herbivores.add(he);
     }
    }
    

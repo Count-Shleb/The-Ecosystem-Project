@@ -15,7 +15,7 @@ class Walkerc extends LivingThing{
   void act(){
     age++;
     
-     record = 100;
+     record = 250;
      
      locked = false;
     
@@ -31,7 +31,7 @@ class Walkerc extends LivingThing{
      }
         
           if(record < precord){
-             if(dist(pos.x, pos.y, h.pos.x, h.pos.y) <= 100){
+             if(dist(pos.x, pos.y, h.pos.x, h.pos.y) <= 250){
                locked = true;
              target = new PVector(h.pos.x + random(-h.size, h.size), h.pos.y + random(-h.size, h.size));
              force = target;
