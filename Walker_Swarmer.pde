@@ -19,7 +19,7 @@ class Walkers extends LivingThing{
     
     for(int i = 0; i < nutrients.size(); i++){
       
-       LivingThing n = engine.get(i);
+       LivingThing n = nutrients.get(i);
        
    if(n instanceof Nutrients){ 
      

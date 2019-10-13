@@ -1,10 +1,12 @@
 class Walkerc extends LivingThing{
  
+  
   Walkerc(){
     hp=1;
     ssize =random(5,10);
     size  = ssize;
-    mass = size/2;
+    massmod = 4;
+    mass = size*massmod;
     babysize = ssize*2;
     age = 0;
     lifespan = 7200;
@@ -13,12 +15,54 @@ class Walkerc extends LivingThing{
   void act(){
     age++;
     
-    mass = size/2;
-    
     force = PVector.random2D();
-    acc = force.div(mass);
+    
+     //stroke(255);
+  for (int i = 0; i < cols; i++) {
+    //line(i*scl,0,i*scl,height);
+    for (int j = 0; j < rows; j++) {
+      //line(0,j*scl,width,j*scl);
+      
+      ArrayList<LivingThing> temp = grid[i][j];
+      
+      for(LivingThing h : temp){
+        
+        if(h instanceof Walkerh){
+          
+           if(dist(pos.x, pos.y, h.pos.x, h.pos.y) <= 50){
+             target = new PVector(h.pos.x + random(-h.size, h.size), h.pos.y + random(-h.size, h.size));
+             force = target;
+             force.sub(pos);
+             //force.add(PVector.random2D());
+           }
+           
+          if(dist(pos.x, pos.y, h.pos.x, h.pos.y)<size/2 + h.size/2){
+        h.hp--;
+        size += h.size/128;
+        // println("dead");
+      }
+        }
+      }
+        
+      //  for(LivingThing b : temp){
+        
+      //  if(b instanceof Walkerb){
+          
+      //    if(dist(pos.x, pos.y, b.pos.x, b.pos.y)<size/2 + b.size/2){
+      //  b.hp--;
+      //  size += b.size/128;
+      //}
+      //  }
+        
+      //}
+      
+    
+    }
+  }
+  
+    acc = force.div(mass/massmod);
     vel.add(acc);
-    vel.limit(mass);
+    vel.limit(mass/(massmod * 2));
     pos.add(vel);
     
     if(pos.x > width+size){ //containing the walker in the window
@@ -37,31 +81,6 @@ class Walkerc extends LivingThing{
     if(age >= lifespan){
       hp--;
     }
-    
-    //stroke(255);
-  for (int i = 0; i < cols; i++) {
-    //line(i*scl,0,i*scl,height);
-    for (int j = 0; j < rows; j++) {
-      //line(0,j*scl,width,j*scl);
-      
-      ArrayList<LivingThing> temp = grid[i][j];
-      
-      for(LivingThing h : temp){
-        
-        if(h instanceof Walkerh){
-          
-          if(dist(pos.x, pos.y, h.pos.x, h.pos.y)<size/2 + h.size/2){
-        h.hp--;
-        size += h.size/128;
-        // println("dead");
-      }
-        }
-        
-      }
-      
-    }
-    
-  }
     
   }
   

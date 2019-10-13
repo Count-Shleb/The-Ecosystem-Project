@@ -7,7 +7,8 @@ int ppop = 2000;
 int hpop = 15;
 int cpop = 2;
 int spop = 500;
-int bpop = 25;
+int bpop = 5;
+int dpop = 2;
 
 int cnpop = 0;
 int cppop = 0;
@@ -15,6 +16,7 @@ int chpop = 0;
 int ccpop = 0;
 int cspop = 0;
 int cbpop = 0;
+int cdpop = 0;
 
 int maxpop = 2000;
 
@@ -34,6 +36,7 @@ Walkerh h;
 Walkerc c;
 Walkers s;
 Walkerb b;
+Walkerd d;
 
 
 void setup(){
@@ -95,7 +98,14 @@ void spop(){
    Walkerb b = new Walkerb();
     engine.add(b);
   }
+  
+  for(int i = 0; i < dpop; i++){
+   cdpop++;
+   Walkerd d = new Walkerd();
+    engine.add(d);
+  }
 }
+
 
   void draw(){
     background(0);
@@ -240,6 +250,23 @@ void spop(){
          cbpop++;
          Walkerb bi = new Walkerb();
          engine.add(bi);
+       } 
+     }
+  }
+  
+   LivingThing d = engine.get(i);
+   if(d instanceof Walkerd){     
+     if(d.dead()){
+       cdpop--;
+     }
+     
+     if(d.babytime()){
+       d.size = d.ssize;
+     if(cdpop <= maxpop){
+             
+         cdpop++;
+         Walkerd de = new Walkerd();
+         engine.add(de);
        } 
      }
   }

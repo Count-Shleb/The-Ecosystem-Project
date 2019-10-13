@@ -1,6 +1,6 @@
 abstract class LivingThing{
   
-  float ssize, size, mass, hp, growth, babysize, age, lifespan;
+  float ssize, size, mass, massmod, hp, growth, babysize, age, lifespan;
   PVector pos; 
   PVector vel; //naming variable of velocity
   PVector acc; // naming variable of acceleration
@@ -12,7 +12,7 @@ abstract class LivingThing{
     vel = new PVector(0,0); //how the walker moves
     acc = new PVector(0,0); 
     force = new PVector(0,0);
-    target = PVector.random2D();
+    target = new PVector(0,0);
   }
   
   void act(){

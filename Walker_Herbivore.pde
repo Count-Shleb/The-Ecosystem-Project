@@ -4,7 +4,8 @@ class Walkerh extends LivingThing{
     hp=1;
     ssize =random(5,10);
     size  = ssize;
-    mass = size/2;
+    massmod = 2;
+    mass = size*massmod;
     babysize = ssize*2;
     age = 0;
     lifespan = 3600;
@@ -18,7 +19,7 @@ class Walkerh extends LivingThing{
     force = PVector.random2D();
     acc = force.div(mass);
     vel.add(acc);
-    vel.limit(mass);
+    vel.limit(mass/massmod);
     pos.add(vel);
     
     if(pos.x > width+size){ //containing the walker in the window

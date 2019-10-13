@@ -1,14 +1,15 @@
-class Walkerb extends LivingThing{
+class Walkerd extends LivingThing{
  
-  Walkerb(){
+  
+  Walkerd(){
     hp=1;
-    ssize =random(2.5, 5);
+    ssize =random(20,25);
     size  = ssize;
-    massmod = 50;
+    massmod = 200;
     mass = size*massmod;
     babysize = ssize*2;
     age = 0;
-    lifespan = 3600;
+    lifespan = 7200;
   }
   
   void act(){
@@ -16,7 +17,7 @@ class Walkerb extends LivingThing{
     
     force = PVector.random2D();
     
-    //stroke(255);
+     //stroke(255);
   for (int i = 0; i < cols; i++) {
     //line(i*scl,0,i*scl,height);
     for (int j = 0; j < rows; j++) {
@@ -27,31 +28,41 @@ class Walkerb extends LivingThing{
       for(LivingThing s : temp){
         
         if(s instanceof Walkers){
-         
-           if(dist(pos.x, pos.y, s.pos.x, s.pos.y) <= 25){
+          
+           if(dist(pos.x, pos.y, s.pos.x, s.pos.y) <= 50){
              target = new PVector(s.pos.x + random(-s.size, s.size), s.pos.y + random(-s.size, s.size));
              force = target;
              force.sub(pos);
-             force.add(PVector.random2D());
+             //force.add(PVector.random2D());
            }
-          
+           
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
         s.hp--;
-        size += s.size/128;
+        size += s.size/4096;
         // println("dead");
-     
-          }
+      }
+        }
+      }
+        
+        for(LivingThing b : temp){
+        
+        if(b instanceof Walkerb){
+          
+          if(dist(pos.x, pos.y, b.pos.x, b.pos.y)<size/2 + b.size/2){
+        b.hp--;
+        size += b.size/128;
+      }
         }
         
       }
       
-    }
     
+    }
   }
   
     acc = force.div(mass);
     vel.add(acc);
-    vel.limit(mass/massmod);
+    vel.limit(mass/(massmod));
     pos.add(vel);
     
     if(pos.x > width+size){ //containing the walker in the window
@@ -71,15 +82,15 @@ class Walkerb extends LivingThing{
       hp--;
     }
     
-    }
+  }
   
   void render(){
     
     
-    fill(255,255,0);
+    fill(0,255,255);
     noStroke();
     
-       float theta = vel.heading();
+    float theta = vel.heading();
     
     pushMatrix();
     translate(pos.x, pos.y);
@@ -92,8 +103,8 @@ class Walkerb extends LivingThing{
     popMatrix();
   }
   
-   boolean babytime(){
+  boolean babytime(){
      return size >= babysize;
    }
-   
+  
 }
