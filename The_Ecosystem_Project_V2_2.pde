@@ -38,6 +38,7 @@ Walkers s;
 Walkerb b;
 Walkerd d;
 
+Debug debug;
 
 void setup(){
   
@@ -46,6 +47,8 @@ void setup(){
   frameRate(60);
   engine = new ArrayList<LivingThing>(5000);
   nutrients = new ArrayList<LivingThing>(50);
+  
+  debug = new Debug();
   
   cols = width/scl;     // Calculate cols & rows
   rows = height/scl;    
@@ -176,7 +179,7 @@ void spop(){
      
      if(p.babytime()){
        p.size = p.ssize;
-     if(cppop <= maxpop){
+     if(cppop < maxpop){
              
          cppop++;
          Plant pl = new Plant();
@@ -228,7 +231,7 @@ void spop(){
      
      if(s.babytime()){
        s.size = s.ssize;
-     if(cspop <= maxpop){
+     if(cspop < maxpop){
              
          cspop++;
          Walkers sw = new Walkers();
@@ -278,6 +281,10 @@ void spop(){
    i--; 
   }
   
-   //text("HPOP: " + chpop,10,height-6);
+  
+  if(keyPressed&&key==' '){
+    debug.act();
+    debug.show();
+  }
   
   }

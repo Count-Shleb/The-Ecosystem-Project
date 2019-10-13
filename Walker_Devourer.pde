@@ -5,7 +5,7 @@ class Walkerd extends LivingThing{
     hp=1;
     ssize =random(20,25);
     size  = ssize;
-    massmod = 200;
+    massmod = 2000;
     mass = size*massmod;
     babysize = ssize*2;
     age = 0;
@@ -17,31 +17,40 @@ class Walkerd extends LivingThing{
     
     force = PVector.random2D();
     
+    for(int i = 0; i < nutrients.size(); i++){
+      
+       LivingThing n = nutrients.get(i);
+       
+   if(n instanceof Nutrients){ 
+     
+     if(dist(pos.x, pos.y, n.pos.x, n.pos.y) <= 500){
+    target = new PVector(n.pos.x + random(-n.size, n.size), n.pos.y + random(-n.size, n.size));
+    force = target;
+    force.sub(pos);
+    force.add(PVector.random2D());
+     }
+    }
+    
+    }
+    
      //stroke(255);
   for (int i = 0; i < cols; i++) {
     //line(i*scl,0,i*scl,height);
     for (int j = 0; j < rows; j++) {
       //line(0,j*scl,width,j*scl);
-      
+          
       ArrayList<LivingThing> temp = grid[i][j];
-      
-      for(LivingThing s : temp){
+        
+        for(LivingThing s : temp){
         
         if(s instanceof Walkers){
           
-           if(dist(pos.x, pos.y, s.pos.x, s.pos.y) <= 50){
-             target = new PVector(s.pos.x + random(-s.size, s.size), s.pos.y + random(-s.size, s.size));
-             force = target;
-             force.sub(pos);
-             //force.add(PVector.random2D());
-           }
-           
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
         s.hp--;
-        size += s.size/4096;
-        // println("dead");
+        size += s.size/512;
       }
         }
+        
       }
         
         for(LivingThing b : temp){
@@ -62,7 +71,7 @@ class Walkerd extends LivingThing{
   
     acc = force.div(mass);
     vel.add(acc);
-    vel.limit(mass/(massmod));
+    vel.limit(mass/massmod/2);
     pos.add(vel);
     
     if(pos.x > width+size){ //containing the walker in the window
