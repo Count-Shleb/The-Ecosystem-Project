@@ -3,6 +3,7 @@ class Walkerh extends LivingThing{
   Walkerh(){
     hp=1;
     ssize =random(5,10);
+    tsize = ssize;
     size  = ssize;
     massmod = 2;
     mass = size*massmod;
@@ -14,7 +15,13 @@ class Walkerh extends LivingThing{
   void act(){
     age++;
     
-    mass = size/2;
+    if(tsize > size){
+     size += .025; 
+    }
+    
+    if(tsize < size){
+    size -= .025;  
+    }
     
     force = PVector.random2D();
     acc = force.div(mass);
@@ -53,7 +60,7 @@ class Walkerh extends LivingThing{
          
           if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size/2 + p.size/2){
         p.hp--;
-        size += p.size/1500;
+        tsize += p.size/10;
         // println("dead");
      
           }
