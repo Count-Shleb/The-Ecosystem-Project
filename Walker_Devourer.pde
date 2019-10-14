@@ -43,7 +43,7 @@ class Walkerd extends LivingThing{
           if(record < precord){
              if(dist(pos.x, pos.y, sp.pos.x, sp.pos.y) <= 2000){
              locked = true;
-             target = new PVector(sp.pos.x + random(-sp.size/2, sp.size/2), sp.pos.y + random(-sp.size/2, sp.size/2));
+             target = new PVector(sp.pos.x + random(-sp.size/4, sp.size/4), sp.pos.y + random(-sp.size/4, sp.size/4));
              force = PVector.random2D();
              force.add(target);
              force.sub(pos);

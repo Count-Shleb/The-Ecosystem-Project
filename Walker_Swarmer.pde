@@ -9,10 +9,17 @@ class Walkers extends LivingThing{
     babysize = ssize*2;
     age = 0;
     lifespan = random(600,1200);
+    hunger = 0;
   }
   
   void act(){
     age++;
+    
+    hunger++;
+    
+    if(hunger >= 300){
+     hp--; 
+    }
     
     force = PVector.random2D();    
     
@@ -88,7 +95,7 @@ class Walkers extends LivingThing{
   void render(){
     
     
-    fill(255,0,255);
+    fill(255, 0, 255);
     noStroke();
     
        float theta = vel.heading();

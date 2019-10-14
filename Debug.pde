@@ -28,6 +28,7 @@ class Debug{
   text("BPOP: " + cbpop,810,width/tsize);
   text("DPOP: " + cdpop,1010,width/tsize);
   text("FR: " + frameRate,210,(width/tsize) + 64);
+  text("FC: " + frameCount,210,(width/tsize) + 128);
     
     //stroke(255);
     

@@ -34,7 +34,7 @@ class Nutrients extends LivingThing{
          
           if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size/2 + p.size/2){
         p.size += p.growth;
-        p.count = 0;
+        p.hunger = 0;
         alpha -= hp * .000000001;
         // println("dead");
      
@@ -48,6 +48,7 @@ class Nutrients extends LivingThing{
         if(s instanceof Walkers){
          
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
+        s.hunger = 0;
         s.size += .005;
         alpha -= hp * .000000001;
         // println("dead");

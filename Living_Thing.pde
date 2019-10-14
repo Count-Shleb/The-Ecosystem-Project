@@ -1,6 +1,6 @@
 abstract class LivingThing{
   
-  float ssize, tsize, size, mass, massmod, hp, growth, babysize, age, lifespan , record, precord, count;
+  float ssize, tsize, size, mass, massmod, hp, growth, babysize, age, lifespan , record, precord, count, hunger;
   PVector pos; 
   PVector vel; //naming variable of velocity
   PVector acc; // naming variable of acceleration

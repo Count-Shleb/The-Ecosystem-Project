@@ -156,10 +156,10 @@ void spop(){
     nchance = -1;
    
     if(ncounter >= 300){
-    nchance = int(random(0, 3));
+    nchance = int(random(0, 4));
     ncounter = 0;
     
-    if(nchance >= 1){
+    if(nchance >= 2){
     cnpop++;
     Nutrients nu = new Nutrients();
     engine.add(nu);
