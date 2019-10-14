@@ -1,5 +1,5 @@
 class Nutrients extends LivingThing{
- 
+   
   Nutrients(){
     hp = random(1000,50000);
     ssize = hp /128;
@@ -12,9 +12,13 @@ class Nutrients extends LivingThing{
     lifespan = 3600;
   }
   
+  float alpha = 50;
+  
   void act(){
     
-    age++;
+    age += 1;
+    
+    hp -= 1;
     
       //stroke(255);
   for (int i = 0; i < cols; i++) {
@@ -29,8 +33,8 @@ class Nutrients extends LivingThing{
         if(s instanceof Walkers){
          
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
-        hp-=.025;
-        s.size += .0025;
+        s.size += .00075;
+        alpha -= hp * .000000001;
         // println("dead");
      
           }
@@ -46,10 +50,13 @@ class Nutrients extends LivingThing{
   
   void render(){
     
-    
-    fill(255,255,150, 50);
+    fill(255, 255, 150, alpha);
     noStroke();
     ellipse(pos.x, pos.y, size,size);
   }
   
+  
+  boolean dead(){
+    return alpha <= 0;
+  }
 }

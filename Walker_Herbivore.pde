@@ -2,7 +2,7 @@ class Walkerh extends LivingThing{
  
   Walkerh(){
     hp=1;
-    ssize =random(5,10);
+    ssize =random(2.5,10);
     tsize = ssize;
     size  = ssize;
     massmod = 2;
@@ -60,7 +60,7 @@ class Walkerh extends LivingThing{
          
           if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size/2 + p.size/2){
         p.hp--;
-        tsize += p.size/10;
+        tsize += p.size/500;
         // println("dead");
      
           }

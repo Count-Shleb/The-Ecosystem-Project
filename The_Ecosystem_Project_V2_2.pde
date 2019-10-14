@@ -5,10 +5,10 @@ ArrayList <LivingThing> herbivores;
 
 int npop = 5;
 int ppop = 2000;
-int hpop = 15;
-int cpop = 2;
+int hpop = 25;
+int cpop = 3;
 int spop = 1000;
-int bpop = 5;
+int bpop = 10;
 int dpop = 2;
 
 int cnpop = 0;
@@ -134,12 +134,12 @@ void spop(){
     
   }
     
-    if(ccpop <= 0){
-     println("cpopd");
-    }
+    //if(ccpop <= 0){
+    // println("cpopd");
+    //}
     
     if(ccpop <= 0 || chpop <= 0){
-      println("ecodead");
+     // println("ecodead");
       ecodead = true; 
   }
     
@@ -204,7 +204,7 @@ void spop(){
       //println(h.age);
    if(h.babytime()){
        chpop++;
-       h.size = h.ssize;
+       h.tsize = h.ssize;
         Walkerh he = new Walkerh();
        engine.add(he);
        herbivores.add(he);

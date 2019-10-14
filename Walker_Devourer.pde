@@ -26,7 +26,7 @@ class Walkerd extends LivingThing{
     
     force = PVector.random2D();
     
-    record = 500;
+    record = 2000;
     
     for(int i = 0; i < nutrients.size(); i++){
       
@@ -41,11 +41,11 @@ class Walkerd extends LivingThing{
      }
      
      if(record <= precord){
-     if(dist(pos.x, pos.y, n.pos.x, n.pos.y) <= 500){
+     if(dist(pos.x, pos.y, n.pos.x, n.pos.y) <= 2000){
     target = new PVector(n.pos.x + random(-n.size, n.size), n.pos.y + random(-n.size, n.size));
-    force = target;
-    force.sub(pos);
-    force.add(PVector.random2D());
+     force = PVector.random2D();
+     force.add(target);
+     force.sub(pos);
      }
     }
    
@@ -78,7 +78,7 @@ class Walkerd extends LivingThing{
           
           if(dist(pos.x, pos.y, b.pos.x, b.pos.y)<size/2 + b.size/2){
         b.hp--;
-        tsize += b.size/128;
+        tsize += b.size/100;
       }
         }
         
