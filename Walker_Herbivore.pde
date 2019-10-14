@@ -50,13 +50,15 @@ class Walkerh extends LivingThing{
            }
           }
            
+           if(dist(pos.x, pos.y, n.pos.x, n.pos.y)<size + n.size/2){
+            locked = false; 
+           }
+           
            if(!locked){
             PVector.random2D(force); 
            }
            
-           if(dist(pos.x, pos.y, n.pos.x, n.pos.y)<size + n.size/2){
-            locked = false; 
-           }
+           
            }
         }
     
@@ -64,7 +66,7 @@ class Walkerh extends LivingThing{
      if(locked){
     acc = force.div(mass);
     }else{
-    acc = force.div(mass/massmod*2);  
+    acc = force.div(mass/massmod);  
     }
     
     vel.add(acc);
@@ -102,7 +104,7 @@ class Walkerh extends LivingThing{
          
           if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size/2 + p.size/2){
         p.hp--;
-        tsize += p.size/100;
+        tsize += p.size/500;
         // println("dead");
      
           }

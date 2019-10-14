@@ -110,7 +110,7 @@ class Swarmpoint extends LivingThing{
   
   Swarmpoint(){
     size = 100;
-    massmod = 1000;
+    massmod = 100;
     mass = size*massmod;
   }
   
@@ -122,7 +122,7 @@ class Swarmpoint extends LivingThing{
     
        record = 500;
        
-       //locked = false;
+       locked = false;
     
    for(int i = 0; i < nutrients.size(); i++){
       
