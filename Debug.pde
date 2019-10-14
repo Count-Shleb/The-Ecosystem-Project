@@ -27,16 +27,17 @@ class Debug{
   text("SPOP: " + cspop,610,width/tsize);
   text("BPOP: " + cbpop,810,width/tsize);
   text("DPOP: " + cdpop,1010,width/tsize);
+  text("FR: " + frameRate,210,(width/tsize) + 64);
     
-    stroke(255);
+    //stroke(255);
     
-    for (int i = 0; i < cols; i++) {
-    line(i*scl,0,i*scl,height);
-    for (int j = 0; j < rows; j++) {
-    line(0,j*scl,width,j*scl);
+    //for (int i = 0; i < cols; i++) {
+    //line(i*scl,0,i*scl,height);
+    //for (int j = 0; j < rows; j++) {
+    //line(0,j*scl,width,j*scl);
       
-    }
-    }
+    //}
+    //}
     
   }
   

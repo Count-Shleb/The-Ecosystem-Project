@@ -6,9 +6,9 @@ class Walkerd extends LivingThing{
     ssize =random(20,25);
     tsize = ssize;
     size  = ssize;
-    massmod = 2000;
+    massmod = 750;
     mass = size*massmod;
-    babysize = ssize*2;
+    babysize = ssize*5;
     age = 0;
     lifespan = random(7200, 14400);
   }
@@ -39,15 +39,16 @@ class Walkerd extends LivingThing{
      record = dist(pos.x, pos.y, sp.pos.x, sp.pos.y);
      }
         
-       
+       if(sp.count >= 100){
           if(record < precord){
              if(dist(pos.x, pos.y, sp.pos.x, sp.pos.y) <= 2000){
              locked = true;
-             target = new PVector(sp.pos.x + random(-sp.size, sp.size), sp.pos.y + random(-sp.size, sp.size));
+             target = new PVector(sp.pos.x + random(-sp.size/2, sp.size/2), sp.pos.y + random(-sp.size/2, sp.size/2));
              force = PVector.random2D();
              force.add(target);
              force.sub(pos);
            }
+          }
           }
            
            if(!locked){
@@ -94,9 +95,14 @@ class Walkerd extends LivingThing{
     }
   }
   
+   if(locked){
     acc = force.div(mass);
+    }else{
+    acc = force.div(mass/massmod);  
+    }
+    
     vel.add(acc);
-    vel.limit(mass/massmod/2);
+    vel.limit(mass / massmod / 5);
     pos.add(vel);
     
     if(pos.x > width+size){ //containing the walker in the window

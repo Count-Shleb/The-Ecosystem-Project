@@ -5,7 +5,7 @@ class Walkerc extends LivingThing{
     hp=1;
     ssize =random(5,10);
     size  = ssize;
-    massmod = 4;
+    massmod = 50;
     mass = size*massmod;
     babysize = ssize*2;
     age = 0;
@@ -15,7 +15,7 @@ class Walkerc extends LivingThing{
   void act(){
     age++;
     
-     record = 250;
+     record = 500;
      
      locked = false;
     
@@ -32,7 +32,7 @@ class Walkerc extends LivingThing{
         
         if(h.size <= size){
           if(record < precord){
-             if(dist(pos.x, pos.y, h.pos.x, h.pos.y) <= 250){
+             if(dist(pos.x, pos.y, h.pos.x, h.pos.y) <= 500){
                locked = true;
              target = new PVector(h.pos.x + random(-h.size, h.size), h.pos.y + random(-h.size, h.size));
              force = PVector.random2D();
@@ -40,19 +40,21 @@ class Walkerc extends LivingThing{
              force.sub(pos);
            }
           }
+          
+          if(dist(pos.x, pos.y, h.pos.x, h.pos.y)<size/2 + h.size/2){
+        h.hp--;
+        size += h.size/10;
+        // println("dead");
+          }
         }
            
            if(!locked){
            force = PVector.random2D();
            }
-           
-          if(dist(pos.x, pos.y, h.pos.x, h.pos.y)<size/2 + h.size/2){
-        h.hp--;
-        size += h.size/25;
-        // println("dead");
+          
       }
         }
-        }
+        
         
         if(!locked){
         
@@ -73,7 +75,7 @@ class Walkerc extends LivingThing{
      record = dist(pos.x, pos.y, b.pos.x, b.pos.y);
      }
           
-          if(b.size >= size/2){
+          if(b.size >= size/4){
           if(record < precord){
              if(dist(pos.x, pos.y, b.pos.x, b.pos.y) <= 250){
                locked = true;
@@ -103,7 +105,12 @@ class Walkerc extends LivingThing{
        
         }
        
-    acc = force.div(mass/massmod * 2);
+     if(locked){
+    acc = force.div(mass);
+    }else{
+    acc = force.div(mass/massmod*2);  
+    }
+    
     vel.add(acc);
     vel.limit(mass/massmod/3);
     pos.add(vel);

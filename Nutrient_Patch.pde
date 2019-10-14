@@ -1,8 +1,8 @@
 class Nutrients extends LivingThing{
    
   Nutrients(){
-    hp = random(1000,50000);
-    ssize = hp /128;
+    hp = random(10000,50000);
+    ssize = hp /150;
     size = ssize;
     mass = size/2;
     //babysize = ssize*2;
@@ -28,13 +28,28 @@ class Nutrients extends LivingThing{
       
       ArrayList<LivingThing> temp = grid[i][j];
       
+      for(LivingThing p : temp){
+        
+        if(p instanceof Plant){
+         
+          if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size/2 + p.size/2){
+        p.size += p.growth;
+        p.count = 0;
+        alpha -= hp * .000000001;
+        // println("dead");
+     
+          }
+        }
+        
+      }
+      
       for(LivingThing s : temp){
         
         if(s instanceof Walkers){
          
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
-        s.size += .075;
-        alpha -= hp * .000000005;
+        s.size += .005;
+        alpha -= hp * .000000001;
         // println("dead");
      
           }

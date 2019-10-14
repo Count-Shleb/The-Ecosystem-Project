@@ -7,23 +7,28 @@ class Plant extends LivingThing{
     mass = size/2;
     babysize = ssize*2;
    // println(babysize);
-    growth = .01;
+    growth = .0025;
     age = 0;
     lifespan = 3600;
+    count = 0;
   }
   
   void act(){
     
     age++;
     
-    size += growth;
- 
+    count++;
+    
+    if(count >= 300){
+     hp--; 
+    }
+    
   }
   
   void render(){
     
     
-    fill(0,255,0);
+    fill(count,255,0);
     noStroke();
     ellipse(pos.x, pos.y, size,size);
   }

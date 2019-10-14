@@ -8,7 +8,7 @@ class Walkers extends LivingThing{
     mass = size*massmod;
     babysize = ssize*2;
     age = 0;
-    lifespan = random(1200,3600);
+    lifespan = random(600,1200);
   }
   
   void act(){
@@ -34,10 +34,11 @@ class Walkers extends LivingThing{
        
           if(record < precord){
              if(dist(pos.x, pos.y, sp.pos.x, sp.pos.y) <= 500){
+               sp.count ++;
              locked = true;
              target = new PVector(sp.pos.x + random(-sp.size, sp.size), sp.pos.y + random(-sp.size, sp.size));
-             force = PVector.random2D();
-             force.add(target);
+             force = target;
+             //force.add(PVector.random2D());
              force.sub(pos);
            }
           }
@@ -55,8 +56,12 @@ class Walkers extends LivingThing{
      //}else{
      // locked = false; 
      //}
+    if(locked){
+    acc = force.div(mass);
+    }else{
+    acc = force.div(mass/massmod);  
+    }
     
-    acc = force.div(mass/massmod);
     vel.add(acc);
     vel.limit(mass/massmod);
     pos.add(vel);
@@ -98,10 +103,6 @@ class Walkers extends LivingThing{
     endShape();
     popMatrix();
   }
-  
-   boolean babytime(){
-     return size >= babysize;
-   }
    
 }
 
@@ -114,6 +115,10 @@ class Swarmpoint extends LivingThing{
   }
   
   void act(){
+    
+    //ellipse(pos.x,pos.y,size,size);
+    
+    count = 0;
     
        record = 500;
        
@@ -131,13 +136,15 @@ class Swarmpoint extends LivingThing{
      record = dist(pos.x, pos.y, n.pos.x, n.pos.y);
      }
      
-    if(locked){
+  
+      if(record < precord){
      if(dist(pos.x, pos.y, n.pos.x, n.pos.y) <= 500){
     target = new PVector(n.pos.x + random(-n.size, n.size), n.pos.y + random(-n.size, n.size));
     force = target;
     force.add(PVector.random2D());
     force.sub(pos);
     
+     
      }
     }else{
      force = PVector.random2D();
@@ -145,6 +152,27 @@ class Swarmpoint extends LivingThing{
    
    }
     }
+   
+    for(int i = 0; i < swarmpoint.size(); i++){
+      
+       LivingThing sp = swarmpoint.get(i);
+       
+   if(sp instanceof Swarmpoint){
+     
+     if(sp != this){
+        float ang = atan2(pos.y - sp.pos.y, pos.x - sp.pos.x);
+   float dist = pos.dist(new PVector(sp.pos.x,sp.pos.y));
+   
+   if(dist < size * 2.5){
+     float repel = map(dist,0,100,50,0);
+     vel.x += -repel * cos(ang);
+     vel.y += -repel * sin(ang);
+   }
+ 
+     }
+     
+   }
+       }
    
     if(record < 500){
       locked = true; 
@@ -157,22 +185,19 @@ class Swarmpoint extends LivingThing{
     vel.limit(mass/(massmod*200));
     pos.add(vel);
     
-    if(pos.x > width+size){ //containing the walker in the window
-     pos.x = -size; 
+    if(pos.x > width+1){ //containing the walker in the window
+     pos.x = -1; 
     }
-     if(pos.x < -size){
-     pos.x = width+size;
+     if(pos.x < -1){
+     pos.x = width+1;
    }
-     if(pos.y > height+size){
-     pos.y = -size; 
+     if(pos.y > height+1){
+     pos.y = -1; 
     }
-     if(pos.y < -size){
-     pos.y = height+size;
+     if(pos.y < -1){
+     pos.y = height+1;
    }
-    
-    if(age >= lifespan){
-      hp--;
-    }
+
   }
    
    boolean dead(){

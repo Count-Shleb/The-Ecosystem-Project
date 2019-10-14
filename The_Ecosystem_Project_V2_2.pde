@@ -5,13 +5,13 @@ ArrayList <LivingThing> herbivores;
 ArrayList <LivingThing> swarmpoint;
 
 int npop = 5;
-int ppop = 2000;
-int hpop = 25;
-int cpop = 3;
-int spop = 1000;
+int ppop = 500;
+int hpop = 10;
+int cpop = 2;
+int spop = 250;
 int bpop = 25;
 int dpop = 2;
-int sppop = 5;
+int sppop = 10;
 
 int cnpop = 0;
 int cppop = 0;
@@ -23,7 +23,7 @@ int cdpop = 0;
 
 int maxpop = 1000;
 
-int scl = 100;
+int scl = 25;
 
 int cols;
 int rows;
@@ -159,7 +159,7 @@ void spop(){
     nchance = int(random(0, 3));
     ncounter = 0;
     
-    if(nchance >= 2){
+    if(nchance >= 1){
     cnpop++;
     Nutrients nu = new Nutrients();
     engine.add(nu);
@@ -250,6 +250,7 @@ void spop(){
          cspop++;
          Walkers sw = new Walkers();
          engine.add(sw);
+         //sw.pos = s.pos;
        } 
      }
   }

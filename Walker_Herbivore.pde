@@ -2,10 +2,10 @@ class Walkerh extends LivingThing{
  
   Walkerh(){
     hp=1;
-    ssize =random(2.5,10);
+    ssize =random(2.5,12.5);
     tsize = ssize;
     size  = ssize;
-    massmod = 2;
+    massmod = 250;
     mass = size*massmod;
     babysize = ssize*2;
     age = 0;
@@ -23,10 +23,52 @@ class Walkerh extends LivingThing{
     size -= .025;  
     }
     
-    force = PVector.random2D();
+        record = 500;
+    
+    locked = false;
+    
+     for(int i = 0; i < nutrients.size(); i++){
+      
+       LivingThing n = nutrients.get(i);
+        
+        if(n instanceof Nutrients){
+          
+          precord = record;
+     if(dist(pos.x, pos.y, n.pos.x, n.pos.y) < precord){
+     record = dist(pos.x, pos.y, n.pos.x, n.pos.y);
+     }
+        
+       
+          if(record < precord){
+             if(dist(pos.x, pos.y, n.pos.x, n.pos.y) <= 500){
+               n.count ++;
+             locked = true;
+             target = new PVector(n.pos.x + random(-n.size, n.size), n.pos.y + random(-n.size, n.size));
+             force = target;
+             //force.add(PVector.random2D());
+             force.sub(pos);
+           }
+          }
+           
+           if(!locked){
+            PVector.random2D(force); 
+           }
+           
+           if(dist(pos.x, pos.y, n.pos.x, n.pos.y)<size + n.size/2){
+            locked = false; 
+           }
+           }
+        }
+    
+    
+     if(locked){
     acc = force.div(mass);
+    }else{
+    acc = force.div(mass/massmod*2);  
+    }
+    
     vel.add(acc);
-    vel.limit(mass/massmod);
+    vel.limit(mass/massmod/3);
     pos.add(vel);
     
     if(pos.x > width+size){ //containing the walker in the window
@@ -60,7 +102,7 @@ class Walkerh extends LivingThing{
          
           if(dist(pos.x, pos.y, p.pos.x, p.pos.y)<size/2 + p.size/2){
         p.hp--;
-        tsize += p.size/500;
+        tsize += p.size/100;
         // println("dead");
      
           }

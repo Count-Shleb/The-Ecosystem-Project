@@ -63,7 +63,7 @@ class Walkerb extends LivingThing{
           if(s.size <= size){
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
         s.hp--;
-        size += s.size/500;
+        size += s.size/2500;
       }
         }
         }
