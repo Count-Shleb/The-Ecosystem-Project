@@ -10,7 +10,7 @@ class Walkerd extends LivingThing{
     mass = size*massmod;
     babysize = ssize*2;
     age = 0;
-    lifespan = 7200;
+    lifespan = random(7200, 14400);
   }
   
   void act(){
@@ -28,29 +28,35 @@ class Walkerd extends LivingThing{
     
     record = 2000;
     
-    for(int i = 0; i < nutrients.size(); i++){
+    for(int i = 0; i < swarmpoint.size(); i++){
       
-       LivingThing n = nutrients.get(i);
+       LivingThing sp = swarmpoint.get(i);
+        
+        if(sp instanceof Swarmpoint){
+          
+          precord = record;
+     if(dist(pos.x, pos.y, sp.pos.x, sp.pos.y) < precord){
+     record = dist(pos.x, pos.y, sp.pos.x, sp.pos.y);
+     }
+        
        
-   if(n instanceof Nutrients){ 
-     
-     precord = record;
-     
-     if(dist(pos.x, pos.y, n.pos.x, n.pos.y) <= precord){
-     record = dist(pos.x, pos.y, n.pos.x, n.pos.y);
-     }
-     
-     if(record <= precord){
-     if(dist(pos.x, pos.y, n.pos.x, n.pos.y) <= 2000){
-    target = new PVector(n.pos.x + random(-n.size, n.size), n.pos.y + random(-n.size, n.size));
-     force = PVector.random2D();
-     force.add(target);
-     force.sub(pos);
-     }
-    }
-   
-   }
-    }
+          if(record < precord){
+             if(dist(pos.x, pos.y, sp.pos.x, sp.pos.y) <= 2000){
+             locked = true;
+             target = new PVector(sp.pos.x + random(-sp.size, sp.size), sp.pos.y + random(-sp.size, sp.size));
+             force = PVector.random2D();
+             force.add(target);
+             force.sub(pos);
+           }
+          }
+           
+           if(!locked){
+            PVector.random2D(force); 
+           }
+           
+           }
+        }
+        
     
      //stroke(255);
   for (int i = 0; i < cols; i++) {

@@ -2,13 +2,13 @@ class Walkerb extends LivingThing{
  
   Walkerb(){
     hp=1;
-    ssize =random(2.5, 5);
+    ssize = random(2, 2.5);
     size  = ssize;
     massmod = 50;
     mass = size*massmod;
     babysize = ssize*2;
     age = 0;
-    lifespan = 3600;
+    lifespan = random(1200, 3600);
   }
   
   void act(){
@@ -16,37 +16,61 @@ class Walkerb extends LivingThing{
     
     force = PVector.random2D();
     
-    //stroke(255);
+     record = 2000;
+    
+    for(int i = 0; i < swarmpoint.size(); i++){
+      
+       LivingThing sp = swarmpoint.get(i);
+        
+        if(sp instanceof Swarmpoint){
+          
+          precord = record;
+     if(dist(pos.x, pos.y, sp.pos.x, sp.pos.y) < precord){
+     record = dist(pos.x, pos.y, sp.pos.x, sp.pos.y);
+     }
+        
+       
+          if(record < precord){
+             if(dist(pos.x, pos.y, sp.pos.x, sp.pos.y) <= 2000){
+             locked = true;
+             target = new PVector(sp.pos.x + random(-sp.size, sp.size), sp.pos.y + random(-sp.size, sp.size));
+             force = PVector.random2D();
+             force.add(target);
+             force.sub(pos);
+           }
+          }
+           
+           if(!locked){
+            PVector.random2D(force); 
+           }
+           
+           }
+        }
+        
+        
+         //stroke(255);
   for (int i = 0; i < cols; i++) {
     //line(i*scl,0,i*scl,height);
     for (int j = 0; j < rows; j++) {
       //line(0,j*scl,width,j*scl);
-      
+          
       ArrayList<LivingThing> temp = grid[i][j];
-      
-      for(LivingThing s : temp){
+        
+        for(LivingThing s : temp){
         
         if(s instanceof Walkers){
-         
-           if(dist(pos.x, pos.y, s.pos.x, s.pos.y) <= 25){
-             target = new PVector(s.pos.x + random(-s.size, s.size), s.pos.y + random(-s.size, s.size));
-             force = target;
-             force.sub(pos);
-             force.add(PVector.random2D());
-           }
           
+          if(s.size <= size){
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
         s.hp--;
         size += s.size/500;
-        // println("dead");
-     
-          }
+      }
+        }
         }
         
       }
       
     }
-    
   }
   
     acc = force.div(mass);

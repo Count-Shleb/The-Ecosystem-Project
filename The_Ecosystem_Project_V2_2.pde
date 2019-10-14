@@ -2,14 +2,16 @@ ArrayList<LivingThing> engine;
 ArrayList<LivingThing> [] [] grid;
 ArrayList<LivingThing> nutrients;
 ArrayList <LivingThing> herbivores;
+ArrayList <LivingThing> swarmpoint;
 
 int npop = 5;
 int ppop = 2000;
 int hpop = 25;
 int cpop = 3;
 int spop = 1000;
-int bpop = 10;
+int bpop = 25;
 int dpop = 2;
+int sppop = 5;
 
 int cnpop = 0;
 int cppop = 0;
@@ -19,7 +21,7 @@ int cspop = 0;
 int cbpop = 0;
 int cdpop = 0;
 
-int maxpop = 2000;
+int maxpop = 1000;
 
 int scl = 100;
 
@@ -38,6 +40,7 @@ Walkerc c;
 Walkers s;
 Walkerb b;
 Walkerd d;
+Swarmpoint sp;
 
 Debug debug;
 
@@ -46,9 +49,10 @@ void setup(){
   //size(800,800,P2D);
   fullScreen(P2D);
   frameRate(60);
-  engine = new ArrayList<LivingThing>(5000);
+  engine = new ArrayList<LivingThing>(6000);
   nutrients = new ArrayList<LivingThing>(50);
-  herbivores = new ArrayList<LivingThing>(500);
+  herbivores = new ArrayList<LivingThing>(100);
+  swarmpoint = new ArrayList<LivingThing>(10);
   
   debug = new Debug();
   
@@ -97,6 +101,12 @@ void spop(){
    cspop++;
    Walkers s = new Walkers();
     engine.add(s);
+  }
+  
+  for(int i = 0; i < sppop; i++){
+   Swarmpoint s = new Swarmpoint();
+    engine.add(s);
+    swarmpoint.add(s);
   }
   
   for(int i = 0; i < bpop; i++){
@@ -149,7 +159,7 @@ void spop(){
     nchance = int(random(0, 3));
     ncounter = 0;
     
-    if(nchance >= 1){
+    if(nchance >= 2){
     cnpop++;
     Nutrients nu = new Nutrients();
     engine.add(nu);
@@ -241,6 +251,13 @@ void spop(){
          Walkers sw = new Walkers();
          engine.add(sw);
        } 
+     }
+  }
+  
+  LivingThing sp = engine.get(i);
+   if(sp instanceof Swarmpoint){     
+     if(sp.dead()){
+     swarmpoint.remove(sp);
      }
   }
   

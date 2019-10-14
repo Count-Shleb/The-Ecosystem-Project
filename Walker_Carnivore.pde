@@ -9,7 +9,7 @@ class Walkerc extends LivingThing{
     mass = size*massmod;
     babysize = ssize*2;
     age = 0;
-    lifespan = 7200;
+    lifespan = random(7200, 14400);
   }
   
   void act(){
@@ -30,7 +30,7 @@ class Walkerc extends LivingThing{
      record = dist(pos.x, pos.y, h.pos.x, h.pos.y);
      }
         
-        if(h.size <= size * 1.25){
+        if(h.size <= size){
           if(record < precord){
              if(dist(pos.x, pos.y, h.pos.x, h.pos.y) <= 250){
                locked = true;
@@ -73,6 +73,7 @@ class Walkerc extends LivingThing{
      record = dist(pos.x, pos.y, b.pos.x, b.pos.y);
      }
           
+          if(b.size >= size/2){
           if(record < precord){
              if(dist(pos.x, pos.y, b.pos.x, b.pos.y) <= 250){
                locked = true;
@@ -82,7 +83,7 @@ class Walkerc extends LivingThing{
              force.sub(pos);
            }
           }
-        
+          }
            
            if(!locked){
            force = PVector.random2D();

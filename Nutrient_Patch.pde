@@ -18,7 +18,7 @@ class Nutrients extends LivingThing{
     
     age += 1;
     
-    hp -= 1;
+    alpha -= hp * .0000005;
     
       //stroke(255);
   for (int i = 0; i < cols; i++) {
@@ -33,8 +33,8 @@ class Nutrients extends LivingThing{
         if(s instanceof Walkers){
          
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
-        s.size += .00075;
-        alpha -= hp * .000000001;
+        s.size += .075;
+        alpha -= hp * .000000005;
         // println("dead");
      
           }
