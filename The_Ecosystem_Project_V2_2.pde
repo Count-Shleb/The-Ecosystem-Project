@@ -46,8 +46,8 @@ Debug debug;
 
 void setup(){
   
-  //size(800,800,P2D);
-  fullScreen(P2D);
+  size(800,800,P2D);
+  //fullScreen(P2D);
   frameRate(60);
   engine = new ArrayList<LivingThing>(6000);
   nutrients = new ArrayList<LivingThing>(50);

@@ -10,7 +10,7 @@ class Walkerd extends LivingThing{
     mass = size*massmod;
     babysize = ssize*5;
     age = 0;
-    lifespan = random(7200, 14400);
+    lifespan = random(3600, 7200);
   }
   
   void act(){
@@ -73,7 +73,7 @@ class Walkerd extends LivingThing{
           
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
         s.hp--;
-        tsize += s.size/100;
+        tsize += s.size/500;
       }
         }
         

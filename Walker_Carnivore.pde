@@ -9,7 +9,7 @@ class Walkerc extends LivingThing{
     mass = size*massmod;
     babysize = ssize*2;
     age = 0;
-    lifespan = random(7200, 14400);
+    lifespan = random(3600, 7200);
   }
   
   void act(){
