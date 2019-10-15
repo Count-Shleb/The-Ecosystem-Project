@@ -49,7 +49,7 @@ class Nutrients extends LivingThing{
          
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
         s.hunger = 0;
-        s.size += .005;
+        s.size += .0025;
         alpha -= hp * .000000001;
         // println("dead");
      
