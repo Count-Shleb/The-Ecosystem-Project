@@ -15,6 +15,8 @@ class Plant extends LivingThing{
   
   void act(){
     
+    tsize = size;
+    
     age++;
     
     hunger++;

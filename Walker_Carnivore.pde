@@ -15,6 +15,8 @@ class Walkerc extends LivingThing{
   void act(){
     age++;
     
+    tsize = size;
+    
      record = 500;
      
      locked = false;

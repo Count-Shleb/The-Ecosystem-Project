@@ -27,7 +27,7 @@ abstract class LivingThing{
   }
  
  boolean babytime(){
-   return size >= babysize;
+   return size >= babysize && tsize >= babysize;
  }
  
   boolean dead(){

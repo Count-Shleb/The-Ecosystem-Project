@@ -2,6 +2,7 @@ ArrayList<LivingThing> engine;
 ArrayList<LivingThing> [] [] grid;
 ArrayList<LivingThing> nutrients;
 ArrayList <LivingThing> herbivores;
+ArrayList <LivingThing> devourers;
 ArrayList <LivingThing> swarmpoint;
 
 int npop = 5;
@@ -51,8 +52,9 @@ void setup(){
   frameRate(60);
   engine = new ArrayList<LivingThing>(6000);
   nutrients = new ArrayList<LivingThing>(50);
-  herbivores = new ArrayList<LivingThing>(100);
-  swarmpoint = new ArrayList<LivingThing>(10);
+  herbivores = new ArrayList<LivingThing>(50);
+  devourers = new ArrayList<LivingThing>(10);
+  swarmpoint = new ArrayList<LivingThing>(sppop);
   
   debug = new Debug();
   
@@ -119,6 +121,7 @@ void spop(){
    cdpop++;
    Walkerd d = new Walkerd();
     engine.add(d);
+    devourers.add(d);
   }
 }
 
@@ -283,6 +286,7 @@ void spop(){
    if(d instanceof Walkerd){     
      if(d.dead()){
        cdpop--;
+       devourers.remove(d);
      }
      
      if(d.babytime()){

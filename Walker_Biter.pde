@@ -73,6 +73,28 @@ class Walkerb extends LivingThing{
     }
   }
   
+  for(int i = 0; i < devourers.size(); i++){
+      
+       LivingThing d = devourers.get(i);
+       
+   if(d instanceof Walkerd){
+     
+
+   
+   float dist = pos.dist(new PVector(d.pos.x,d.pos.y));
+   
+   if(dist < d.size * 2.5){
+     float ang = atan2(pos.y - d.pos.y, pos.x - d.pos.x);
+     float repel = map(dist,0,100,50,0);
+     force.x += repel * cos(ang);
+     force.y += repel * sin(ang);
+   }
+ 
+     
+     
+   }
+       }
+  
     acc = force.div(mass);
     vel.add(acc);
     vel.limit(mass/massmod/2);

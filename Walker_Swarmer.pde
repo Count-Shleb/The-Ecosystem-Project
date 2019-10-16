@@ -15,6 +15,8 @@ class Walkers extends LivingThing{
   void act(){
     age++;
     
+    tsize = size;
+    
     hunger++;
     
     if(hunger >= 300){
