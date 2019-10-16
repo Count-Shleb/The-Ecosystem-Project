@@ -4,7 +4,7 @@ class Walkers extends LivingThing{
     hp=1;
     ssize = random(1,2);
     size  = ssize;
-    massmod = 50;
+    massmod = 250;
     mass = size*massmod;
     babysize = ssize*2;
     age = 0;
