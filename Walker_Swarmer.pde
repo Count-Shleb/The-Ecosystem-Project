@@ -117,7 +117,7 @@ class Swarmpoint extends LivingThing{
   
   Swarmpoint(){
     size = 100;
-    massmod = 100;
+    massmod = 50;
     mass = size*massmod;
   }
   
