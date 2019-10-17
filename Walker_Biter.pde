@@ -1,5 +1,5 @@
 class Walkerb extends LivingThing{
- 
+
   Walkerb(){
     hp=1;
     ssize = random(2, 2.5);
@@ -13,6 +13,8 @@ class Walkerb extends LivingThing{
   
   void act(){
     age++;
+    
+    tsize = size;
     
     force = PVector.random2D();
     
@@ -63,7 +65,7 @@ class Walkerb extends LivingThing{
           if(s.size <= size){
           if(dist(pos.x, pos.y, s.pos.x, s.pos.y)<size/2 + s.size/2){
         s.hp--;
-        size += s.size/1500;
+        size += s.size/500;
       }
         }
         }
