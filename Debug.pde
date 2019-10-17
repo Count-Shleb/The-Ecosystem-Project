@@ -21,8 +21,8 @@ class Debug{
   stroke(0);
     
   textSize(tsize);  
-  text("PPOP: " + cppop,10,tspace);
-  text("HPOP: " + chpop,210,tspace);
+  text("PPOP: " + cppop,10,width/tsize);
+  text("HPOP: " + chpop,210,width/tsize);
   text("CPOP: " + ccpop,410,width/tsize);
   text("SPOP: " + cspop,610,width/tsize);
   text("BPOP: " + cbpop,810,width/tsize);
