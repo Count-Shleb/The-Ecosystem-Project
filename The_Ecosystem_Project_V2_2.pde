@@ -31,6 +31,8 @@ int rows;
 
 boolean ecodead = false;
 
+boolean pause = false;
+
 int nchance = -1;
 int ncounter = 0;
 
@@ -47,7 +49,7 @@ Debug debug;
 
 void setup(){
   
-  size(800,800,P2D);
+  size(600,600,P2D);
   //fullScreen(P2D);
   frameRate(60);
   engine = new ArrayList<LivingThing>(6000);
@@ -127,6 +129,16 @@ void spop(){
 
 
   void draw(){
+    
+    if(pause){
+      if(keyPressed && key == 'd'){
+      debug.act();
+      debug.show(); 
+    }
+    }
+    
+   if(!pause){
+      
     background(0);
     
     for (int i = 0; i < cols; i++) {
@@ -312,9 +324,20 @@ void spop(){
    spop(); 
   }
   
-  if(keyPressed&&key==' '){
+  if(keyPressed && key == 'd'){
     debug.act();
     debug.show();
   }
+    }
+  }
   
+  void keyPressed(){
+   
+    if(key == ' '){
+      if(!pause){
+        pause = true;
+      }else{
+      pause = false;
+      }
+    }
   }

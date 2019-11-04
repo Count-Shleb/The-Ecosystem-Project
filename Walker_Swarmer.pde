@@ -99,7 +99,7 @@ class Walkers extends LivingThing{
     
     fill(255, 0, 255);
     noStroke();
-    
+    //ellipse(pos.x,pos.y,size,size);
        float theta = vel.heading();
     
     pushMatrix();
