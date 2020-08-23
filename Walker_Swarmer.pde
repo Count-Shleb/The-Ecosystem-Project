@@ -75,17 +75,17 @@ class Walkers extends LivingThing{
     vel.limit(mass/massmod);
     pos.add(vel);
     
-    if(pos.x > width+size){ //containing the walker in the window
+    if(pos.x > widths+size){ //containing the walker in the window
      pos.x = -size; 
     }
      if(pos.x < -size){
-     pos.x = width+size;
+     pos.x = widths+size;
    }
-     if(pos.y > height+size){
+     if(pos.y > heights+size){
      pos.y = -size; 
     }
      if(pos.y < -size){
-     pos.y = height+size;
+     pos.y = heights+size;
    }
     
     if(age >= lifespan){
@@ -194,17 +194,17 @@ class Swarmpoint extends LivingThing{
     vel.limit(mass/(massmod*200));
     pos.add(vel);
     
-    if(pos.x > width+1){ //containing the walker in the window
-     pos.x = -1; 
+    if(pos.x > widths+size){ //containing the walker in the window
+     pos.x = -size; 
     }
-     if(pos.x < -1){
-     pos.x = width+1;
+     if(pos.x < -size){
+     pos.x = widths+size;
    }
-     if(pos.y > height+1){
-     pos.y = -1; 
+     if(pos.y > heights+size){
+     pos.y = -size; 
     }
-     if(pos.y < -1){
-     pos.y = height+1;
+     if(pos.y < -size){
+     pos.y = heights+size;
    }
 
   }

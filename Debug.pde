@@ -30,15 +30,16 @@ class Debug{
   text("FR: " + frameRate,210,(width/tsize) + 64);
   text("FC: " + frameCount,210,(width/tsize) + 128);
     
-    //stroke(255);
+    stroke(255);
+    strokeWeight(1);
     
-    //for (int i = 0; i < cols; i++) {
-    //line(i*scl,0,i*scl,height);
-    //for (int j = 0; j < rows; j++) {
-    //line(0,j*scl,width,j*scl);
+    for (int i = 0; i < cols; i++) {
+    line(i*scl,0,i*scl,heights);
+    for (int j = 0; j < rows; j++) {
+    line(0,j*scl,widths,j*scl);
       
-    //}
-    //}
+    }
+    }
     
   }
   

@@ -11,7 +11,7 @@ abstract class LivingThing{
   boolean birthing = false;
   
   LivingThing(){
-    pos = new PVector((random(width)), (random(height))); //starting location of walker
+    pos = new PVector((random(widths)), (random(heights))); //starting location of walker
     vel = new PVector(0,0); //how the walker moves
     acc = new PVector(0,0); 
     force = new PVector(0,0);
@@ -25,6 +25,8 @@ abstract class LivingThing{
   void render(){
     
   }
+  
+  
  
  boolean babytime(){
    return size >= babysize && tsize >= babysize;

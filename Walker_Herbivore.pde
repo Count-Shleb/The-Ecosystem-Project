@@ -73,17 +73,17 @@ class Walkerh extends LivingThing{
     vel.limit(mass/massmod/3);
     pos.add(vel);
     
-    if(pos.x > width+size){ //containing the walker in the window
+    if(pos.x > widths+size){ //containing the walker in the window
      pos.x = -size; 
     }
      if(pos.x < -size){
-     pos.x = width+size;
+     pos.x = widths+size;
    }
-     if(pos.y > height+size){
+     if(pos.y > heights+size){
      pos.y = -size; 
     }
      if(pos.y < -size){
-     pos.y = height+size;
+     pos.y = heights+size;
    }
     
     if(age >= lifespan){

@@ -5,7 +5,9 @@ ArrayList <LivingThing> herbivores;
 ArrayList <LivingThing> devourers;
 ArrayList <LivingThing> swarmpoint;
 
-int npop = 5;
+int widths, heights;
+
+int npop = 50;
 int ppop = 500;
 int hpop = 10;
 int cpop = 2;
@@ -22,7 +24,7 @@ int cspop = 0;
 int cbpop = 0;
 int cdpop = 0;
 
-int maxpop = 1000;
+int maxpop = 500;
 
 int scl = 25;
 
@@ -32,6 +34,8 @@ int rows;
 boolean ecodead = false;
 
 boolean pause = false;
+
+boolean wkey, akey, skey, dkey, rkey, fkey, space, shift;
 
 int nchance = -1;
 int ncounter = 0;
@@ -45,11 +49,34 @@ Walkerb b;
 Walkerd d;
 Swarmpoint sp;
 
+Cam cam;
+
 Debug debug;
 
+void keyPressed() {
+  if( key == 'W' || key == 'w') wkey = true;
+  if( key == 'A' || key == 'a') akey = true;
+  if( key == 'S' || key == 's') skey = true;
+  if( key == 'D' || key == 'd') dkey = true;
+  if( key == 'R' || key == 'r') rkey = true;
+  if( key == 'F' || key == 'f') fkey = true;
+  if( key == ' ')               space = true;
+  if (key == CODED && keyCode == SHIFT) shift = true;
+  }
+
+void keyReleased() {
+  if( key == 'W' || key == 'w') wkey = false;
+  if( key == 'A' || key == 'a') akey = false;
+  if( key == 'S' || key == 's') skey = false;
+  if( key == 'D' || key == 'd') dkey = false;
+  if( key == 'R' || key == 'r') rkey = false;
+  if( key == 'F' || key == 'f') fkey = false;
+  if( key == ' ')               space = false;
+  if (key == CODED && keyCode == SHIFT) shift = false;
+  }
+
 void setup(){
-  
-  size(600,600,P2D);
+  size(600,600,P3D);
   //fullScreen(P2D);
   frameRate(60);
   engine = new ArrayList<LivingThing>(6000);
@@ -58,10 +85,14 @@ void setup(){
   devourers = new ArrayList<LivingThing>(10);
   swarmpoint = new ArrayList<LivingThing>(sppop);
   
-  debug = new Debug();
+  widths = width*4;
+  heights = height*4;
   
-  cols = width/scl;     // Calculate cols & rows
-  rows = height/scl;    
+  debug = new Debug();
+  cam = new Cam();
+  
+  cols = widths/scl;     // Calculate cols & rows
+  rows = heights/scl;    
   
   // Initialize grid as 2D array of empty ArrayLists
   grid = new ArrayList[cols][rows];
@@ -131,7 +162,9 @@ void spop(){
   void draw(){
     
     if(pause){
-      if(keyPressed && key == 'd'){
+      background(0);
+      cam.update();
+      if(keyPressed && key == 'p'){
       debug.act();
       debug.show(); 
     }
@@ -140,6 +173,8 @@ void spop(){
    if(!pause){
       
     background(0);
+    
+    cam.update();
     
     for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
@@ -324,16 +359,16 @@ void spop(){
    spop(); 
   }
   
-  if(keyPressed && key == 'd'){
+  if(keyPressed && key == 'p'){
     debug.act();
     debug.show();
   }
     }
-  }
   
-  void keyPressed(){
+  
+  
    
-    if(key == ' '){
+    if(space){
       if(!pause){
         pause = true;
       }else{
@@ -341,3 +376,4 @@ void spop(){
       }
     }
   }
+  
