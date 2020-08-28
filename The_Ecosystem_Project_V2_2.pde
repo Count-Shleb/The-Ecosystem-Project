@@ -9,8 +9,8 @@ int widths, heights;
 
 int npop = 50;
 int ppop = 500;
-int hpop = 10;
-int cpop = 2;
+int hpop = 25;
+int cpop = 10;
 int spop = 250;
 int bpop = 25;
 int dpop = 2;
@@ -35,7 +35,7 @@ boolean ecodead = false;
 
 boolean pause = false;
 
-boolean wkey, akey, skey, dkey, rkey, fkey, space, shift;
+boolean wkey, akey, skey, dkey, rkey, fkey, pkey, lkey, space, shift;
 
 int nchance = -1;
 int ncounter = 0;
@@ -60,6 +60,8 @@ void keyPressed() {
   if( key == 'D' || key == 'd') dkey = true;
   if( key == 'R' || key == 'r') rkey = true;
   if( key == 'F' || key == 'f') fkey = true;
+  if( key == 'P' || key == 'p') pkey = true;
+  if( key == 'L' || key == 'l') lkey = true;
   if( key == ' ')               space = true;
   if (key == CODED && keyCode == SHIFT) shift = true;
   }
@@ -71,6 +73,8 @@ void keyReleased() {
   if( key == 'D' || key == 'd') dkey = false;
   if( key == 'R' || key == 'r') rkey = false;
   if( key == 'F' || key == 'f') fkey = false;
+  if( key == 'P' || key == 'p') pkey = false;
+  if( key == 'L' || key == 'l') lkey = false;
   if( key == ' ')               space = false;
   if (key == CODED && keyCode == SHIFT) shift = false;
   }
@@ -164,6 +168,14 @@ void spop(){
     if(pause){
       background(0);
       cam.update();
+      
+      int i = engine.size()-1;
+  while (i>=0) {
+    LivingThing thing = engine.get(i);
+    thing.render();
+    i--;
+  }
+  
       if(keyPressed && key == 'p'){
       debug.act();
       debug.show(); 
@@ -359,21 +371,41 @@ void spop(){
    spop(); 
   }
   
-  if(keyPressed && key == 'p'){
+  if(pkey){
     debug.act();
     debug.show();
   }
     }
   
-  
+  if(lkey){
+       stroke(255);
+    strokeWeight(1);
+    
+    for (int i = 0; i < cols; i++) {
+    line(i*scl,0,i*scl,heights);
+    for (int j = 0; j < rows; j++) {
+    line(0,j*scl,widths,j*scl);
+      
+    }
+    }
+    }
   
    
     if(space){
-      if(!pause){
+      
+      int i = 0;
+      
+      if(!pause && i == 0){
         pause = true;
-      }else{
-      pause = false;
+        i = 60;
+      }else if(space && i == 0){
+        pause = false;
+        i = 60;
+        }
+      if(i > 0){
+        i--;
       }
+      println(i);
     }
   }
   
